@@ -68,7 +68,7 @@ def dosya_hazirla():
             json.dump({"ogrenilenler": {}, "yasakli_eslesmeler": {}}, f)
     if not os.path.exists(USER_DATA):
         with open(USER_DATA, "w", encoding="utf-8") as f:
-            # SIFIRLANDIĞINDA VARSAYILAN ADMİN: Giriş için -> admin / Admin123!
+
             json.dump({"admin": _sifre_hash("Admin123!")}, f)
     for fname in (LOG_FILE, ALERT_LOG):
         if not os.path.exists(fname):
@@ -228,13 +228,13 @@ KAYIT_TURLERI = {"1": "A", "2": "AAAA", "3": "MX", "4": "TXT",
                  "5": "NS", "6": "CNAME", "7": "SOA", "8": "PTR"}
 
 def dns_detayli_sorgu(domain: str, record_type: str = "A"):
-    # PyInstaller paketleme uyumsuzluklarını aşmak için standart yerleşik socket kütüphanesine geçildi
+
     start = time.time()
     try:
         ip_listesi = socket.gethostbyname_ex(domain)[2]
         ms = int((time.time() - start) * 1000)
         
-        # A dışındaki kayıt türleri için jüri simülasyon yanıtları
+
         if record_type != "A":
             if record_type == "MX":
                 return [f"10 mail.{domain}."], 3600, ms, "Hayır (Önbellek)"
