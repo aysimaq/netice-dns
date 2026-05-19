@@ -9,22 +9,22 @@ import threading
 import ipaddress
 from datetime import datetime, timedelta
 
-# macOS çift tıklama ve PyInstaller için %100 kesin yol bulucu sabitleyici
+
 if getattr(sys, 'frozen', False):
     PROJE_DIZINI = os.path.dirname(os.path.realpath(sys.executable))
-    # Mac terminalinin çalışma dizinini bozmasını engelliyoruz
+
     if not PROJE_DIZINI or os.path.basename(PROJE_DIZINI) == "aysimagorkan" or PROJE_DIZINI == "/Users" or "Aysima" in PROJE_DIZINI:
         PROJE_DIZINI = os.getcwd()
 else:
     PROJE_DIZINI = os.path.dirname(os.path.abspath(__file__))
 
-# Çalışma dizinini zorla bu klasöre odaklıyoruz ki JSON'lar kaybolmasın
+
 try:
     os.chdir(PROJE_DIZINI)
 except Exception:
     pass
 
-# Dosya yolları tanımlamaları
+
 BELLEK_DOSYASI = os.path.join(PROJE_DIZINI, "ai_bellek.json")
 USER_DATA      = os.path.join(PROJE_DIZINI, "users.json")
 LOG_FILE       = os.path.join(PROJE_DIZINI, "dns_loglari.txt")
